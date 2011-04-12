@@ -1,0 +1,60 @@
+#!/usr/bin/python
+#! -*- coding: utf-8 -*-
+
+import sys
+import re
+
+def read_file(filename):
+    input = open(filename, "r")
+    return input.read()
+        
+
+def prompt():
+    print "Text Analyzer"
+    print "-------------"
+    print "Commands:"
+    print "\tread FILENAME : Read a given file."
+    print "\tstats         : Show stats of recently read text."
+    print "\texit          : Exit."
+    while 1:
+        print "> ",
+        input = raw_input()
+        if input == "exit":
+            exit()
+if __name__ == "__main__":
+    argv_len = len(sys.argv)
+    if not argv_len == 1:
+        print "Usage: python text-analyzer.py"
+        exit()
+    plain_text = read_file("alice.txt")
+    #print plain_text
+    word_list = plain_text.split(" ")
+    #p = re.compile('[a-zA-Z]+')
+    #result = p.search(plain_text)
+    #print result.group()
+    """
+    for word in  word_list:
+        word.strip()
+        word.rstrip(',')
+        word.rstrip('.')
+        word.replace
+        print "["+word+"]"
+    """
+    p = re.compile(r'\W+')
+    word_list = p.split(plain_text)
+    word_dict = dict()
+    word_counter = 0
+    for word in word_list:
+        if not word:
+            continue
+        word = word.lower()
+        word_dict[word] = word_dict.get(word, 0) + 1
+        word_counter += 1
+    # sort by count
+    d = [(v,k) for k,v in word_dict.items()]
+    d.sort()
+    d.reverse()
+    for count, word in d[:10]:
+        print count, word
+    print word_counter
+    prompt()
