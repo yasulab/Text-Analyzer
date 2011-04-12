@@ -1,0 +1,15 @@
+Usage:
+	python text-analyzer.py
+
+When you run this progra, the prompt will appear.
+In there, you can type the following commands.
+
+Commands:
+	rand NUMBER   : Randomly pick a word given times.
+	read FILENAME : Read a given file.
+	stats         : Show stats of recently read text.
+	help          : Show this.
+	exit          : Exit.
+
+Thanks,
+Yohei YASUKAWA
